@@ -2,11 +2,11 @@
 # Insight
 
 # About The Team
-    - Brian Cohn
-    - Ali Marjaninejad
-    - Dilan Shah
-    - Martin Shapiro
-    - Serhan Ulkumen
+- Brian Cohn
+- Ali Marjaninejad
+- Dilan Shah
+- Martin Shapiro
+- Serhan Ulkumen
     
 # Inspiration
 
@@ -25,10 +25,12 @@
 
 # Hardware Used
 ## VR
-    - HTC Vive
-
+- HTC Vive
+- HTC Tracker x 2
+- HTC Vive Racquet
 # Software Used
 ## Asset Store
-    - [Vive Input Utility](https://assetstore.unity.com/packages/tools/integration/vive-input-utility-64219)
+- [Vive Input Utility](https://assetstore.unity.com/packages/tools/integration/vive-input-utility-64219)
+
 ## Tools Used
 -
