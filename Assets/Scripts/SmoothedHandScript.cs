@@ -17,7 +17,9 @@ public class SmoothedHandScript : MonoBehaviour
     private Transform currentTransform;
     private int lowerBound;
     public bool filterOn = true;
-
+    // hand model: https://poly.google.com/view/btWmPNVSKUc
+    // balloon: https://poly.google.com/view/d1gDDhM7pTf
+    // used https://github.com/matzman666/OpenVR-AdvancedSettings/releases
 
     //derived from https://forum.unity.com/threads/average-quaternions.86898/
     // assuming qArray.Length > 1
