@@ -1,7 +1,6 @@
 # Title: Insight Patient Data
 # Team: Insight
-![Insight Logo](Insight/Insight___Logo_Design.jpg)
-Format: ![Alt Text](url)
+![Insight Team Logo](https://github.com/creatingrealitysubmissions/Insight/blob/master/Insight___Logo_Design.jpg)
 
 # About The Team
 - Brian Cohn, Lead Scientist
