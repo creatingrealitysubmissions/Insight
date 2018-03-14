@@ -20,12 +20,7 @@ public class RawTrialDataSaver : MonoBehaviour
     private string dataFilePath = @"C:\Users\bcohn\Desktop\Insight_Patient_Data\patientData.csv";
     // Use this for initialization
     void Start () {
-        if(s == null)
-            s = GameObject.FindGameObjectWithTag("rightHand").GetComponent<SmoothedHandScript>();
-        if (s)
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-        } 
+        s = GameObject.FindGameObjectWithTag("rightHand").GetComponent<SmoothedHandScript>();
 	}
     private bool PDFIsAvailable() {return(File.Exists(@"C:\Users\bcohn\Desktop\Insight_Patient_Data\report.pdf"));}
     private void Update()
@@ -62,12 +57,8 @@ public class RawTrialDataSaver : MonoBehaviour
                 var observationString = position.x.ToString() + "," + position.y.ToString() + "," + position.z.ToString();
                 AddText(fs, observationString);
                 AddText(fs, "\n");
-                //yield return null;
             }
         }
-        Debug.Log("Saved Data To Disk Successfully...");
-        Debug.Log("<TODO Begin Python process via command line>");
-        Debug.Log("Python process has been started ...");
-
+        Debug.Log("Saved Data To Disk Successfully. Now Waiting on PDF");
     }
 }
