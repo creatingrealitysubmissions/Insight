@@ -6,16 +6,26 @@ public class SmoothedHandScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject RightController;
-    public int filterSampleSize = 5;
-
-    void MoveSelfToLocationOfInterest(Vector3 filteredPosition, Vector3 filteredEulerAngles)
-    {
-        this.transform.position = filteredPosition;
-        this.transform.eulerAngles = filteredEulerAngles;
-    }
+    public int filterSampleSize = 450;
     // Use this for initialization
     public List<Transform> transformsList = new List<Transform>();
     // Update is called once per frame
+
+    //taken from https://forum.unity.com/threads/average-quaternions.86898/
+    // assuming qArray.Length > 1
+    Quaternion AverageQuaternion(Quaternion[] qArray)
+    {
+        Quaternion qAvg = qArray[0];
+        float weight;
+        for (int i = 1; i < qArray.Length; i++)
+        {
+            weight = 1.0f / (float)(i + 1);
+            qAvg = Quaternion.Slerp(qAvg, qArray[i], weight);
+        }
+        return qAvg;
+    }
+    
+    private int framesSoFar = 0;
     void Update()
     {
         Transform currentTransform = RightController.transform;
@@ -25,26 +35,31 @@ public class SmoothedHandScript : MonoBehaviour
         {
             for (int i = 0; i < difference; i++)
             {
-                transformsList.RemoveAt(0);
+                transformsList.RemoveAt(transformsList.Count-1);
             }
             
         }
-
-   
-        Vector3 xyzSum = new Vector3(0f, 0f, 0f);
-        Vector3 eulerAnglesSum = new Vector3(0f, 0f, 0f);
-
-        for (int i = 0; i < transformsList.Count; i++)
+        int n = transformsList.Count;
+        List<Quaternion> rotationsList = new List<Quaternion>();
+        for (int i = 0; i < n; i++)
         {
-            Quaternion dataPoint = transformsList[i].rotation;
-            xyzSum += new Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
-            eulerAnglesSum += dataPoint.eulerAngles;
+            rotationsList.Add(transformsList[i].rotation);
         }
-        Vector3 filteredPosition = xyzSum / transformsList.Count;
-        Vector3 filteredEulerAngles = eulerAnglesSum / transformsList.Count;
-        Transform latestTransform = transformsList[transformsList.Count - 1];
-        transform.SetPositionAndRotation(latestTransform.position, latestTransform.rotation);
-
+        Quaternion meanQuaternion = AverageQuaternion(rotationsList.ToArray());
+      
+        Vector3 positionSum = new Vector3(0,0,0);
+        for (int i = 0; i < n; i++)
+        {
+            positionSum += transformsList[i].position;
+        }
+        Vector3 filteredPosition = positionSum / n;
+        //Transform latestTransform = transformsList[transformsList.Count - 1];
+        transform.SetPositionAndRotation(filteredPosition, meanQuaternion);
+        framesSoFar += 1;
+        if (framesSoFar == 250)
+        {
+            Debug.Log(n);
+        }
 
     }
 }
