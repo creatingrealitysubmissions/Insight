@@ -8,6 +8,17 @@ public class SmoothedHandScript : MonoBehaviour
     [SerializeField]
     private GameObject RightController;
     public int filterSampleSize = 70;
+    [System.NonSerialized]
+    public List<Vector3> positionList = new List<Vector3>();
+    [System.NonSerialized]
+    public List<Quaternion> rotationList = new List<Quaternion>();
+    public Vector3 filteredPosition;
+    private Quaternion meanQuaternion;
+    private Transform currentTransform;
+    private int lowerBound;
+    public bool filterOn = true;
+
+
     //derived from https://forum.unity.com/threads/average-quaternions.86898/
     // assuming qArray.Length > 1
     // @param qList a list of quaternion objects, each a sample from the last N frames.
@@ -36,13 +47,6 @@ public class SmoothedHandScript : MonoBehaviour
         Vector3 filteredPosition = positionSum / n;
         return(filteredPosition);
     }
-    private List<Vector3> positionList = new List<Vector3>();
-    private List<Quaternion> rotationList = new List<Quaternion>();
-    public Vector3 filteredPosition;
-    private Quaternion meanQuaternion;
-    private Transform currentTransform;
-    private int lowerBound;
-    public bool filterOn = true;
     void LateUpdate()
     {
 
@@ -67,7 +71,8 @@ public class SmoothedHandScript : MonoBehaviour
        // Case where there is sufficient data to filter and filtering is engaged
        else if(positionList.Count >= filterSampleSize)
         {
-            lowerBound = (positionList.Count - filterSampleSize) - 1;
+            lowerBound = (positionList.Count - filterSampleSize);
+
             List<Vector3> subsetOfPositions = positionList.GetRange(lowerBound, filterSampleSize);
             filteredPosition = AveragePosition(subsetOfPositions);
             meanQuaternion = AverageQuaternion(rotationList.GetRange(lowerBound, filterSampleSize));

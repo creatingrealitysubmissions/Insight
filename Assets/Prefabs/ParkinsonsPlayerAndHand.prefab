@@ -173,8 +173,8 @@ GameObject:
   - component: {fileID: 23629523169908118}
   - component: {fileID: 114252780209185446}
   m_Layer: 0
-  m_Name: 'R Hand '
-  m_TagString: Untagged
+  m_Name: R Hand
+  m_TagString: rightHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,8 +297,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280730688282292}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 1.37, y: -0.861, z: 6.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4814266381622042}
@@ -306,7 +306,7 @@ Transform:
   - {fileID: 4355647943700202}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4735891594221196
 Transform:
   m_ObjectHideFlags: 1
@@ -575,9 +575,7 @@ MonoBehaviour:
   RightController: {fileID: 1255979988815550}
   filterSampleSize: 100
   filteredPosition: {x: 0, y: 0, z: 0}
-  currentControllerPosition: {x: 0, y: 0, z: 0}
-  currentControllerRotation: {x: 0, y: 0, z: 0, w: 0}
-  filterOn: 0
+  filterOn: 1
 --- !u!114 &114253867196036728
 MonoBehaviour:
   m_ObjectHideFlags: 1
