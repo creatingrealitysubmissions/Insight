@@ -1,6 +1,6 @@
 # Title: Insight Patient Data
 # Team: Insight
-
+![alt text](https://github.com/creatingrealitysubmissions/Insight/blob/master/Insight/Insight___Logo_Design.jpg)
 # About The Team
 - Brian Cohn, Lead Scientist
 - Ali Marjaninejad, Data Scientist
