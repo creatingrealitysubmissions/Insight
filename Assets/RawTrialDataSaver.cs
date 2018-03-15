@@ -15,12 +15,13 @@ public class RawTrialDataSaver : MonoBehaviour
         byte[] info = new UTF8Encoding(true).GetBytes(value);
         fs.Write(info, 0, info.Length);
     }
-    public SmoothedHandScript s;
+    private SmoothedHandScript s;
     private string filepath;
+    public GameObject rightHandObject;
     private string dataFilePath = @"C:\Users\bcohn\Desktop\Insight_Patient_Data\patientData.csv";
     // Use this for initialization
     void Start () {
-        s = GameObject.FindGameObjectWithTag("rightHand").GetComponent<SmoothedHandScript>();
+        s = rightHandObject.GetComponent<SmoothedHandScript>();
 	}
     private bool PDFIsAvailable() {return(File.Exists(@"C:\Users\bcohn\Desktop\Insight_Patient_Data\report.pdf"));}
     private void Update()

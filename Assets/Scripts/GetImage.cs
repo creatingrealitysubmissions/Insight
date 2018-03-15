@@ -1,27 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.IO;
 
-// Get the latest webcam shot from outside "Friday's" in Times Square
+//Loads texture from image file on disk
 public class GetImage : MonoBehaviour
 {
-	public string url = "http://serhan.io/images/bg/p00.jpg";
+    //public string filePath = "/ Users / serhan / Desktop / Insight_Patient_Data";
+    string filePath = @"C:\Users\bcohn\Desktop\Insight_Patient_Data";
 
-	IEnumerator Start()
+    void Update()
 	{
-		// Start a download of the given URL
-		using (WWW www = new WWW(url))
-		{
-			// Wait for download to complete
-			yield return www;
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Refreshed framed plot");
+            Texture2D tex = LoadPNG(filePath);
 
-			// create sprite
-			Sprite sp = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f));
-			// assign texture
-			Image img = this.GetComponent<Image>();
-			img.sprite = sp;
-//			Renderer renderer = GetComponent<Renderer>();
-//			renderer.material.mainTexture = www.texture;
-		}
+            Sprite sp = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            Image img = this.GetComponent<Image>();
+            img.sprite = sp;
+        }
+       
 	}
+
+    public static Texture2D LoadPNG(string filePath)
+    {
+
+        Texture2D tex = null;
+        byte[] fileData;
+
+        if (File.Exists(filePath+ @"\plotT.png"))
+        {
+            fileData = File.ReadAllBytes(filePath + @"\plotT.png");
+            tex = new Texture2D(2, 2);
+            tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+        }
+        return tex;
+    }
 }
