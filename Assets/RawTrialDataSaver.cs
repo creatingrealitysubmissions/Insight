@@ -18,12 +18,12 @@ public class RawTrialDataSaver : MonoBehaviour
     private SmoothedHandScript s;
     private string filepath;
     public GameObject rightHandObject;
-    private string dataFilePath = @"C:\Users\bcohn\Desktop\Insight_Patient_Data\patientData.csv";
+    private string dataFilePath = @"C:\Users\Dilan\Desktop\Insight_Patient_Data\patientData.csv";
     // Use this for initialization
     void Start () {
         s = rightHandObject.GetComponent<SmoothedHandScript>();
 	}
-    private bool PDFIsAvailable() {return(File.Exists(@"C:\Users\bcohn\Desktop\Insight_Patient_Data\report.pdf"));}
+    private bool PDFIsAvailable() {return(File.Exists(@"C:\Users\Dilan\Desktop\Insight_Patient_Data\report.pdf"));}
     private void Update()
     {
         if (status=="dataUnsaved" && Input.GetKeyDown(KeyCode.Space))

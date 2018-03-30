@@ -7,7 +7,7 @@ using System.IO;
 public class GetImage : MonoBehaviour
 {
     //public string filePath = "/ Users / serhan / Desktop / Insight_Patient_Data";
-    string filePath = @"C:\Users\bcohn\Desktop\Insight_Patient_Data";
+    string filePath = @"C:\Users\Dilan\Desktop\Insight_Patient_Data";
 
     void Update()
 	{
