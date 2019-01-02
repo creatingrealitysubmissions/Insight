@@ -104,12 +104,6 @@ doc = SimpleDocTemplate("form_letter.pdf",pagesize=letter,
                         topMargin=72,bottomMargin=18)
 Story=[]
 logo = "plot.png"
-magName = "Pythonista"
-issueNum = 12
-subPrice = "99.00"
-limitedDate = "03/05/2010"
-freeGift = "tin foil hat"
-
 formatted_time = time.ctime()
 full_name = "Mike Driscoll"
 address_parts = ["411 State St.", "Marshalltown, IA 50158"]
@@ -136,24 +130,15 @@ ptext = '<font size=12>Dear %s:</font>' % full_name.split()[0].strip()
 Story.append(Paragraph(ptext, styles["Normal"]))
 Story.append(Spacer(1, 12))
 
-ptext = '<font size=12>We would like to welcome you to our subscriber base for %s Magazine! \
-        You will receive %s issues at the excellent introductory price of $%s. Please respond by\
-        %s to start receiving your subscription and get the following free gift: %s.</font>' % (magName,
-                                                                                                issueNum,
-                                                                                                subPrice,
-                                                                                                limitedDate,
-                                                                                                freeGift)
-Story.append(Paragraph(ptext, styles["Justify"]))
-Story.append(Spacer(1, 12))
 
 
-ptext = '<font size=12>Thank you very much and we look forward to serving you.</font>'
+ptext = '<font size=12>Thank you very much</font>'
 Story.append(Paragraph(ptext, styles["Justify"]))
 Story.append(Spacer(1, 12))
 ptext = '<font size=12>Sincerely,</font>'
 Story.append(Paragraph(ptext, styles["Normal"]))
 Story.append(Spacer(1, 48))
-ptext = '<font size=12>Ima Sucker</font>'
+ptext = '<font size=12>Doctor\'s Name</font>'
 Story.append(Paragraph(ptext, styles["Normal"]))
 Story.append(Spacer(1, 12))
 doc.build(Story)
